@@ -1,0 +1,139 @@
+.container{
+    max-width: 1250px;
+    margin: auto;
+}
+.section-1-main{
+    margin-top: 20px;
+    h1{
+        font-size: 24px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 500;
+        color: #1F194D;
+    }
+}
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+.card{
+    padding: 15px 10px;
+    border-radius: 10px;
+    color: #1F194D;
+    max-width: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: relative;
+    height: 60px;
+    img{
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+
+    ::ng-deep .mat-icon {
+        height: 20px!important;
+        width: 20px!important;
+    }
+    ::ng-deep .material-icons {
+        font-size: 20px!important;
+    }
+    .icon{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #FFF;
+    }
+    h2{
+        margin-bottom: 0px;
+        font-size: 26px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 700;
+        margin-left: 5px;
+    }
+    p{
+        font-size: 16px;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: 500;
+        margin-left: 5px;
+        margin-bottom: 0px;
+    }
+}
+
+.card-user{
+    background: linear-gradient(90deg,#ffbf96,#fe7096);
+    .icon{
+        background-color: #FF1973;
+    }
+}
+
+.card-comapny{
+    background: linear-gradient(90deg,#90caf9,#047edf 99%);
+    .icon{
+        background-color: #047edf;
+    }
+}
+
+.card-device{
+    background: linear-gradient(90deg,#84d9d2,#07cdae);
+    .icon{
+        background-color: #11b39d;
+    }
+}
+
+
+.card-company-device{
+    background: linear-gradient(90deg,#84d9d2,#07cdae);
+    max-width: 270px;
+    .icon{
+        background-color: #11b39d;
+    }
+    p{
+        font-size: 18px;
+        font-weight: 600;
+        span{
+            font-size: 15px;
+            font-weight: 500;
+        }
+    }
+}
+
+
+.icon-extra{
+    display: flex;
+    gap: 10px;
+}
+@media(max-width:767px){
+    .card{
+        width: 100%;
+        margin: auto;
+        max-width: 300px;
+    }
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        align-items: center;
+        justify-content:center;
+        gap: 15px;
+    }
+    
+}
+
+
+.card-child{
+    display: flex;
+    align-items: center;
+    p{
+        font-size: 15px;
+    }
+}

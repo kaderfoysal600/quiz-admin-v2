@@ -1,0 +1,113 @@
+<div class="section-1">
+  <div class="container">
+    <img src="../../../assets/songsod.webp" class="background-image" />
+    <div class="overlay"></div>
+    <div class="text">
+      <h2>৭ জানুয়ারী, ২০২৪</h2>
+      <h1>দ্বাদশ জাতীয় সংসদ নির্বাচন</h1>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="section-2">
+
+
+  <div class="item-container">
+    <div class="item">
+      <div class="icon">
+        <img src="../../../assets/total-seat.png" alt="" />
+      </div>
+      <h2>৩০০</h2>
+      <h3>আসন সংখ্যা</h3>
+    </div>
+    <div class="item">
+      <div class="icon">
+        <img src="../../../assets/total-candidate.png" alt="" />
+      </div>
+      <h2>৩০০</h2>
+      <h3>আসন সংখ্যা</h3>
+    </div>
+    <div class="item">
+      <div class="icon">
+        <img src="../../../assets/male-candidate.png" alt="" />
+      </div>
+      <h2>৩০০</h2>
+      <h3>আসন সংখ্যা</h3>
+    </div>
+    <div class="item">
+      <div class="icon">
+        <img src="../../../assets/female-candidate.png" alt="" />
+      </div>
+      <h2>৩০০</h2>
+      <h3>আসন সংখ্যা</h3>
+    </div>
+  </div>
+</div> -->
+<div class="section-2">
+  <h2 class="nirbachon-tottho">নির্বাচনের সংক্ষিপ্ত তথ্য</h2>
+  <div class="card-container">
+    <div class="card card-user">
+      <img src="../../../assets/circle.svg" alt="" />
+      <div class="icon">
+        <mat-icon>supervised_user_circle</mat-icon>
+      </div>
+      <p>
+        মোট ভোটার
+        <strong style="font-size: 20px">১০,৪১,৯০,৪৮০</strong>
+      </p>
+      <!-- <h2>{{totalUser}}</h2> -->
+    </div>
+    <div class="card card-comapny">
+      <img src="../../../assets/circle.svg" alt="" />
+      <div class="icon">
+        <mat-icon> person_pin</mat-icon>
+      </div>
+      <p>
+        পুরুষ ভোটার
+        <strong style="font-size: 20px">৫,২৫,৪৭,৩২৯</strong>
+      </p>
+    </div>
+    <div class="card card-device">
+      <img src="../../../assets/circle.svg" alt="" />
+      <div class="icon">
+        <mat-icon>face</mat-icon>
+      </div>
+      <p>
+        নারী ভোটার
+        <strong style="font-size: 20px">৫,১৬,৪৩,১৫১</strong>
+      </p>
+    </div>
+    <div class="card card-comapny">
+      <img src="../../../assets/circle.svg" alt="" />
+      <div class="icon">
+        <mat-icon> person_pin</mat-icon>
+      </div>
+      <p>
+        আসন সংখ্যা 
+        <strong style="font-size: 20px">৩০০</strong>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="section-3">
+  <h2 class="nirbachon-tottho">জেনে নিন আপনার আসন সম্পর্কে</h2>
+  <div class="division-container">
+    <a (click)="getallSub()">সব আসন</a>
+    <div class="baki-ason" *ngFor="let data of allDivision">
+      <a (click)="getSubDivisionById(data.id)">{{ data.name }}</a>
+    </div>
+  </div>
+
+  <div class="sub-division-container">
+    <div
+      class="sub-card"
+      *ngFor="let data of filteredSubDivision"
+      (click)="seeMore(data)"
+    >
+      <p>আসন নং: {{ data.ashonNo }}</p>
+      <p class="name">{{ data.name }}</p>
+      <p>{{ data.subTitle }}</p>
+    </div>
+  </div>
+</div>

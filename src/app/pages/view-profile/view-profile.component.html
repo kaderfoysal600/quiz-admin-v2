@@ -1,0 +1,30 @@
+<div class="section-1">
+    <div class="container">
+        <div class="section-1-main">
+            <div class="title">
+                <h2>Profile Info </h2>
+                <a (click)="openEditControllerDialog()" class="edit">
+                    <mat-icon>edit</mat-icon>
+                </a>
+            </div>
+     <div class="info-container">
+        <img class="profile-image" src="http://localhost:3000/{{photo}}" alt="User Image">
+        <div class="others-data">
+            <p><span>Name : </span> {{first_name}} {{last_name}}</p>
+            <p><span>Email:</span> {{email}}</p>
+            <p><span>Role:</span> {{singleUser?.roleName}}</p>
+            <p><span>User Type:</span> {{user_type}}</p>
+            <p *ngIf="showCompanyName"><span>Company Name:</span> <small
+                    *ngFor="let data of singleUser?.companyName; let last = last">
+                    {{ data?.name }}{{ !last ? ' , ' : '' }} </small></p>
+            <p><span>Gender:</span> {{gender}}</p>
+            <p><span>Phone No. </span>{{mobile}}</p>
+            <p><span>Address </span>{{address}}</p>
+            <p><span>Status </span>{{status === '0' ? 'Inactive' : 'Active'}}</p>
+
+        </div>
+     </div>
+            <!-- <pre>{{singleUser?.companyName.name | json}}</pre> -->
+        </div>
+    </div>
+</div>

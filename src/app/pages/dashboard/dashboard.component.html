@@ -1,0 +1,49 @@
+<div class="section-1">
+    <div class="container">
+        <div class="section-1-main">
+            <h1>Dashboard</h1>
+            <div class="card-container">
+                <div class="card card-user">
+                    <img src="../../../assets/circle.svg" alt="">
+                    <div class="icon">
+                        <mat-icon>supervised_user_circle</mat-icon>
+                    </div>
+                    <p>Total User <strong style="font-size: 20px;">{{totalUser}}</strong></p>
+                    <!-- <h2>{{totalUser}}</h2> -->
+                </div>
+                <div class="card card-comapny" *ngIf="companyAndDeviecePermission()">
+                    <img src="../../../assets/circle.svg" alt="">
+                    <div class="icon">
+                        <mat-icon>work</mat-icon>
+                    </div>
+                    <p>Total Company <strong style="font-size: 20px;">{{totalCompany}}</strong></p>
+                </div>
+                <div class="card card-device" *ngIf="companyAndDeviecePermission()">
+                    <img src="../../../assets/circle.svg" alt="">
+                <div class="card-child">
+                    <div class="icon">
+                        <mat-icon>perm_device_information</mat-icon>
+                    </div>
+                   <div class="total-device">
+                    <p>Total Device <strong style="font-size: 20px;">{{totalDevice}}</strong></p>
+                    <p>Total Selling Device  <strong style="font-size: 20px;">{{totalSelleingDevice}}</strong></p>
+                   </div>
+                </div>
+                </div>
+                <div class="card card-company-device" *ngIf="companyAndDeviecePermission()">
+                    <img src="../../../assets/circle.svg" alt="">
+              <div class="icon-extra">
+                <div class="icon">
+                    <mat-icon>perm_device_information</mat-icon>
+                </div>
+                <div class="extra">
+                    <p>{{totalWarrentyDevice}} <span>Total Warrenty Device</span></p>
+                    <p>{{withoutWarrentyDevice}} <span>without Warrenty Device</span></p>
+                    <p>{{currentWarrentyDevice}} <span>Current Warrenty Device</span></p>
+                </div>
+              </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

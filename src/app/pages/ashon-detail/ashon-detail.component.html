@@ -1,0 +1,67 @@
+<div class="section-1">
+  <div class="container">
+    <img src="../../../assets/songsod.webp" class="background-image" />
+    <div class="overlay"></div>
+    <div class="text">
+      <h2>{{ singleSub?.name }}</h2>
+      <h1>{{ singleSub?.subTitle }}</h1>
+      <div class="ashon-no">
+        <p>
+          আসন নং <strong>{{ singleSub?.ashonNo }}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-container">
+  <div class="card card-user">
+    <img src="../../../assets/circle.svg" alt="" />
+    <div class="icon">
+      <mat-icon>supervised_user_circle</mat-icon>
+    </div>
+    <p>
+      মোট ভোটার
+      <strong style="font-size: 20px">{{ singleSub?.totalVotar }}</strong>
+    </p>
+    <!-- <h2>{{totalUser}}</h2> -->
+  </div>
+  <div class="card card-comapny">
+    <img src="../../../assets/circle.svg" alt="" />
+    <div class="icon">
+      <mat-icon> person_pin</mat-icon>
+    </div>
+    <p>
+      পুরুষ ভোটার
+      <strong style="font-size: 20px">{{ singleSub?.totalVotar }}</strong>
+    </p>
+  </div>
+  <div class="card card-device">
+    <img src="../../../assets/circle.svg" alt="" />
+    <div class="icon">
+      <mat-icon>face</mat-icon>
+    </div>
+    <p>
+      নারী ভোটার
+      <strong style="font-size: 20px">{{ singleSub?.totalVotar }}</strong>
+    </p>
+  </div>
+</div>
+
+<div class="parthi">
+  <h2 class="nirbachon-tottho">প্রার্থী</h2>
+  <div class="parthi-container">
+    <div class="item" *ngFor="let data of filteredMember">
+      <div class="img-container">
+        <img
+          class="pdf-image"
+          src="http://localhost:3000/{{ data?.photo }}"
+          alt="User Image"
+        />
+      </div>
+      <p class="name">{{ data?.name }}</p>
+      <p>দল {{ data?.protik?.name }}</p>
+      <p>প্রতীক: {{ data?.protik?.protik }}</p>
+    </div>
+  </div>
+</div>

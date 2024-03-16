@@ -1,0 +1,90 @@
+<div class="container">
+   
+    <div class="v-c-f" *ngIf="data?.HowManyPhase==1">
+        <div class="alarm-container">
+            <h1>Voltage 1</h1>
+            <form class="example-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+        
+                <div class="min-max">
+                    <h2>Min</h2>
+                    <mat-slider  formControlName="minTemp1" thumbLabel 
+                    [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <div class="min-max">
+                    <h2>Max</h2>
+                    <mat-slider thumbLabel formControlName="maxTemp1" [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <mat-slide-toggle formControlName="alarmTemp1">Alarm</mat-slide-toggle>
+                <button  mat-raised-button color="primary" type="submit">Save Settings</button>
+              </form>
+        
+        </div>
+        <div class="alarm-container">
+            <h1>Current1</h1>
+            <form class="example-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+        
+                <div class="min-max">
+                    <h2>Min</h2>
+                    <mat-slider  formControlName="minTemp1" thumbLabel 
+                    [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <div class="min-max">
+                    <h2>Max</h2>
+                    <mat-slider thumbLabel formControlName="maxTemp1" [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <mat-slide-toggle formControlName="alarmTemp1">Alarm</mat-slide-toggle>
+                <button  mat-raised-button color="primary" type="submit">Save Settings</button>
+              </form>
+        
+        </div>
+        <div class="alarm-container">
+            <h1>Frequency</h1>
+            <form class="example-form" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+        
+                <div class="min-max">
+                    <h2>Min</h2>
+                    <mat-slider  formControlName="minTemp1" thumbLabel 
+                    [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <div class="min-max">
+                    <h2>Max</h2>
+                    <mat-slider thumbLabel formControlName="maxTemp1" [displayWith]="formatLabel" 
+                    tickInterval="10" step="1" min="-20" max="100"
+                        aria-label="units"></mat-slider>
+                </div>
+                <mat-slide-toggle formControlName="alarmTemp1">Alarm</mat-slide-toggle>
+                <button  mat-raised-button color="primary" type="submit">Save Settings</button>
+              </form>
+        
+        </div>
+    </div>
+
+
+    <div class="temperature" *ngIf="data?.Temperature">
+        <div class="alarm-container" *ngFor="let setting of getTemperatureSettings()">
+          <h1>{{ setting.title }}</h1>
+          <form class="example-form" [formGroup]="getTemperatureFormGroup(setting)" (ngSubmit)="onTemperatureFormSubmit()" ngNativeValidate>
+            <div class="min-max">
+              <h2>Min</h2>
+              <mat-slider formControlName="minTemp" thumbLabel [displayWith]="formatLabel" tickInterval="1" step="10" min="-20" max="100" aria-label="units"></mat-slider>
+            </div>
+            <div class="min-max">
+              <h2>Max</h2>
+              <mat-slider thumbLabel formControlName="maxTemp" [displayWith]="formatLabel" tickInterval="1" step="10" min="-20" max="100" aria-label="units"></mat-slider>
+            </div>
+            <mat-slide-toggle formControlName="alarmTemp">Alarm</mat-slide-toggle>
+            <button mat-raised-button color="primary" type="submit">Save Settings</button>
+          </form>
+        </div>
+      </div>
+</div>

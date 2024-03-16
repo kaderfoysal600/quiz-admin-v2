@@ -1,0 +1,55 @@
+<div class="section-1">
+  <div class="container">
+    <div class="section-1-top">
+      <div class="add">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openEditControllerDialog()"
+        >
+          Add New
+        </button>
+      </div>
+      <h1>Data of All Category</h1>
+    </div>
+    <div class="table-container">
+      <table id="ExampleTable">
+        <tr>
+          <th>Actions</th>
+          <th>Name</th>
+          <th>Slug</th>
+        </tr>
+        <tr *ngFor="let data of allDivision; let i = index">
+          <td class="td-action">
+                      <button
+              class="delete-button"
+              color="warn"
+              (click)="subCategory(data)"
+            >
+              <!-- <img src="../../../assets/door-handle.png" alt=""> -->
+              <mat-icon>perm_device_information</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="openEditControllerDialog(data)"
+              class="edit-button"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="openConfirmDialog(data)"
+              class="delete-button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+          <td>{{ data?.name }}</td>
+          <td>{{ data?.slug }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

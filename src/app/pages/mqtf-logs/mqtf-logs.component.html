@@ -1,0 +1,112 @@
+<div class="section-1">
+
+
+
+  <div class="container">
+    <!-- (click)="openEditControllerDialog()" -->
+
+
+    <div class="top-flex">
+
+      <div class="title-top">
+        <h1>Data of All MQT Logs</h1>
+        <button mat-raised-button color="primary" (click)="exportCSV()">CSV</button>
+
+      </div>
+
+      <div class="search">
+        <form action="" [formGroup]="searchForm" (ngSubmit)="onSearchClick(page)">
+          <mat-form-field>
+            <mat-label>Device Id </mat-label>
+            <mat-select formControlName="device_id" name="Device Id">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let item of serverCompanyDevice" [value]="item.DeviceID" required>
+                {{item.DeviceID}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field>
+            <mat-label>Company</mat-label>
+            <mat-select formControlName="user_company" name="user company">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let item of allCompany" [value]="item.id" required>
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+    <div class="datetime">
+        <mat-form-field >
+            <mat-placeholder>Start DateTime</mat-placeholder>
+            <mat-datetimepicker-toggle [for]="datetimePicker" matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #datetimePicker type="datetime" [openOnFocus]="true" [timeInterval]="5"> </mat-datetimepicker>
+            <input matInput formControlName="startDateTime" [matDatetimepicker]="datetimePicker"  autocomplete="false" />
+          </mat-form-field>
+
+          <mat-form-field >
+            <mat-placeholder>End DateTime</mat-placeholder>
+            <mat-datetimepicker-toggle [for]="EnddatetimePicker" matSuffix></mat-datetimepicker-toggle>
+            <mat-datetimepicker #EnddatetimePicker type="datetime" [openOnFocus]="true" [timeInterval]="5"> </mat-datetimepicker>
+            <input matInput formControlName="endDateTime" [matDatetimepicker]="EnddatetimePicker"  autocomplete="false" />
+          </mat-form-field>
+    </div>
+        
+
+          <button mat-raised-button color="accent" type="submit" [disabled]="searchClicked"><mat-icon>search</mat-icon>
+            Search</button>
+
+          <div class="clear">
+            <button mat-raised-button color="primary" (click)="onClearFilter()">
+              <mat-icon>clear</mat-icon> Clear Filter</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+
+
+    <div class="table-container">
+      <table id="ExampleTable">
+        <tr>
+          <!-- <th>Actions</th> -->
+          <th>SL No.</th>
+          <th>DeviceID</th>
+          <th>Company</th>
+          <th>sensor Type</th>
+          <th>sensor Number</th>
+          <th>sensor Value</th>
+          <th>Insert Time</th>
+        </tr>
+        <tr
+          *ngFor="let data of allMqtfLogs | paginate: { itemsPerPage: itemsPerPage, currentPage: page , totalItems:totalItems}; let i = index">
+          <td style="font-weight: 500;">{{ (i + 1) + (page - 1) * itemsPerPage }}</td>
+          <td class="full-name">{{data?.DeviceID}} </td>
+          <td>{{data?.companyName}}</td>
+          <td>{{data?.sensorType === "t" ? 'Temperature' : data?.sensorType === "h" ? 'Humidity' : data?.sensorType ===
+            "f" ? 'Frequency' : data?.sensorType === "v" ? 'Voltage' : data?.sensorType === "i" ? 'Current': data?.sensorType === "s" ? 'Smoke' : data?.sensorType === "l" ? 'Liquid': 'Unknown'
+            }}</td>
+          <td>{{data?.sensorNumber}}</td>
+          <td>{{data?.sensorValue}}</td>
+          <td>{{data?.insert_time | date: ' MMM d, y - h:mm:ss a' }} </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="data-pagination" *ngIf="showPegination">
+      <pagination-controls (pageChange)="getAllMqtfLogs((page = $event))"></pagination-controls>
+    </div>
+
+
+  </div>
+</div>
+
+
+<!-- TEMPLATE NGX SPINNER-->
+<ngx-spinner style="width: 100vw; height: 100vh" bdColor="rgba(0,0,0,0.25)" size="medium" color="#fff"
+  type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>

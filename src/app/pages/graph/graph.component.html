@@ -1,0 +1,166 @@
+<div class="container">
+  <div class="chart-container">
+    <div class="card color-card" [ngStyle]="{'background-color': smoke1==0 ? 'green' : smoke1==1? 'red'  : smoke1==2? 'yellow' : 'initial'}">
+      <div class="card-body">
+        <h4 class="card-title">Smoke1 : <span >{{ smoke1==0 ? 'Safe' : smoke1==1? 'Denger':  smoke1==2? 'Error':'null' }}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastSomek1Time | date :'h:mm a, M/d/yy'}}</span></h4>
+      </div>
+    </div>
+    <div class="card color-card" [ngStyle]="{'background-color': smoke2==0 ? 'green' : smoke2==1? 'red'  : smoke2==2? 'yellow' : 'initial'}">
+      <div class="card-body">
+        <h4 class="card-title">Smoke2 : <span >{{ smoke2==0 ? 'Safe' : smoke2==1? 'Denger':  smoke2==2? 'Error':'null' }}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastSomek2Time | date :'h:mm a, M/d/yy'}}</span></h4>
+      </div>
+    </div>
+    <!-- <div class="card color-card" [ngStyle]="{'background-color': smoke3==0 ? 'green' : smoke3==1? 'red'  : smoke3==2? 'yellow' : 'initial'}">
+      <div class="card-body">
+        <h4 class="card-title">Smoke3:<span >{{ smoke3==0 ? 'Safe' : smoke3==1? 'Denger':  smoke3==2? 'Error':'null' }}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastSomek1Time | date :'h:mm a, M/d/yy'}}</span></h4>
+      </div>
+    </div> -->
+
+    <div class="card color-card" [ngStyle]="{'background-color': liquid1==0 ? 'green' : liquid1==1? 'red'  : liquid1==2? 'yellow' : 'initial'}">
+      <div class="card-body">
+        <h4 class="card-title">liquid1 : <span >{{ liquid1==0 ? 'Safe' : liquid1==1? 'Denger':  liquid1==2? 'Error':'null' }}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastLiquid1Time | date :'h:mm a, M/d/yy'}}</span></h4>
+      </div>
+    </div>
+
+    <div class="card color-card" *ngIf="liquid2!=null" [ngStyle]="{'background-color': liquid2==0 ? 'green' : liquid2==1? 'red'  : liquid2==2? 'yellow' : 'initial'}">
+      <div class="card-body">
+        <h4 class="card-title">liquid2 : <span >{{ liquid2==0 ? 'Safe' : liquid2==1? 'Denger':  liquid2==2? 'Error':'null' }}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastLiquid2Time | date :'h:mm a, M/d/yy'}}</span></h4>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Temperature1 : <span >{{lastTemperature1}}°C</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastTemperatureTime1 | date :'h:mm a, M/d/yy'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart">{{ lineChart1 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Temperature2 : <span >{{lastTemperature2}}°C</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastTemperatureTime2 | date :'h:mm a, M/d/yy'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart2">{{ lineChart2 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Voltage1 : <span >{{lastVoltage1}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastVoltage1Time | date :'h:mm a, M/d/yy'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart3">{{ lineChart3 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Voltage2 : <span >{{lastVoltage2}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastVoltage2Time | date :'h:mm a, M/d/yy'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart4">{{ lineChart4 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Voltage3 : <span >{{lastVoltage3}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastVoltage3Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart5">{{ lineChart5 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- //humidity -->
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Humidity1 : <span >{{humidity1}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastHumidity1Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart6">{{ lineChart6 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Humidity2 : <span >{{humidity2}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastHumidity2Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart7">{{ lineChart7 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- //frequency -->
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Frequency1 : <span >{{frequency1}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastFrequency1Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart8">{{ lineChart8 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Frequency2 : <span >{{frequency2}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastFrequency2Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart9">{{ lineChart9 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Frequency3 : <span >{{frequency3}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastFrequency3Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart10">{{ lineChart10 }}</canvas>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- //current -->
+
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Current1 : <span >{{current1}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastCurrent1Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart11">{{ lineChart11 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Current2 : <span >{{current2}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastCurrent2Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart12">{{ lineChart12 }}</canvas>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Current3 : <span >{{current3}}</span></h4>
+        <h4 class="card-title">Last Updated Time : <span >{{lastCurrent3Time | date : ' MMM d, y - h:mm:ss a'}}</span></h4>
+        <div id="divchart">
+          <canvas id="MyChart13">{{ lineChart13 }}</canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

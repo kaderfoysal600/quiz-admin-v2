@@ -1,0 +1,150 @@
+<div class="dialog-container">
+    <div class="close-add">
+      <div class="close">
+        <button mat-icon-button type="button" (click)="onClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+  
+      <div class="top-input-header">
+        <div class="title">
+          <h2>{{ deviceData ? "Edit Device" : "Add Device" }}</h2>
+        </div>
+      </div>
+    </div>
+  
+    <form #formElement="ngForm" [formGroup]="deviceForm" (ngSubmit)="onSubmit()" autocomplete="off">
+      <div class="form-main">
+        
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Name</mat-label>
+          <input type="text" formControlName="Name" matInput placeholder="Enter Name">
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Model No (Unique)</mat-label>
+          <input type="text" formControlName="ModelNo" matInput placeholder="Enter Model No">
+          <mat-error>This field is required and must be a unique, alphanumeric, no space min 10 max 30</mat-error>
+        </mat-form-field>
+  
+
+  
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea formControlName="Description" matInput placeholder="Enter Description"></textarea>
+        </mat-form-field>
+  
+        <!-- <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>How many Phase</mat-label>
+          <input type="number" formControlName="HowManyPhase" matInput placeholder="Enter How Many Phases">
+          <mat-error>How many phases should be either 2 or 3</mat-error>
+        </mat-form-field> -->
+
+          
+        <mat-form-field>
+          <mat-label>How many Phase</mat-label>
+          <mat-select formControlName="HowManyPhase" name="HowManyPhase">
+              <mat-option *ngFor="let item of howManyPhases" [value]="item.value">
+                  {{item.value}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+
+
+
+        
+  
+        <!-- Checkbox fields for Voltage, Current, Frequency.... -->
+        <!-- <div class="checkbox-fields">
+          <mat-checkbox formControlName="VoltageRed" [checked]="deviceForm.get('VoltageRed').value === 1">Voltage Red</mat-checkbox>
+          <mat-checkbox formControlName="VoltageGreen" [checked]="deviceForm.get('VoltageGreen').value === 1">Voltage Green</mat-checkbox>
+          <mat-checkbox formControlName="VoltageYellow" [checked]="deviceForm.get('VoltageYellow').value === 1">Voltage Yellow</mat-checkbox>
+          <mat-checkbox formControlName="CurrentRed" [checked]="deviceForm.get('CurrentRed').value === 1">Current Red</mat-checkbox>
+          <mat-checkbox formControlName="CurrentGreen" [checked]="deviceForm.get('CurrentGreen').value === 1">Current Green</mat-checkbox>
+          <mat-checkbox formControlName="CurrentYellow" [checked]="deviceForm.get('CurrentYellow').value === 1">Current Yellow</mat-checkbox>
+          <mat-checkbox formControlName="FrequencyRed" [checked]="deviceForm.get('FrequencyRed').value === 1">Frequency Red</mat-checkbox>
+          <mat-checkbox formControlName="FrequencyGreen" [checked]="deviceForm.get('FrequencyGreen').value === 1">Frequency Green</mat-checkbox>
+          <mat-checkbox formControlName="FrequencyYellow" [checked]="deviceForm.get('FrequencyYellow').value === 1">Frequency Yellow</mat-checkbox>
+        </div> -->
+  
+        <!-- <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Temperature</mat-label>
+          <input type="number" formControlName="Temperature" matInput placeholder="Enter Temperature">
+          <mat-error>This field should be a number</mat-error>
+        </mat-form-field> -->
+                  
+        <mat-form-field>
+          <mat-label>Temperature sensor</mat-label>
+          <mat-select formControlName="Temperature" name="Temperature">
+              <mat-option *ngFor="let item of sensorCount" [value]="item.value">
+                  {{item.value}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+<!--   
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Humidity</mat-label>
+          <input type="number" formControlName="Humidity" matInput placeholder="Enter Humidity">
+          <mat-error>This field should be a number</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <mat-label>Humidity sensor</mat-label>
+          <mat-select formControlName="Humidity" name="Humidity">
+              <mat-option *ngFor="let item of sensorCount" [value]="item.value">
+                  {{item.value}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+  
+        <!-- <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Smoke</mat-label>
+          <input type="number" formControlName="Smoke" matInput placeholder="Enter Smoke">
+          <mat-error>This field should be a number</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <mat-label>Smoke sensor</mat-label>
+          <mat-select formControlName="Smoke" name="Smoke">
+              <mat-option *ngFor="let item of sensorCount" [value]="item.value">
+                  {{item.value}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+  
+        <!-- <mat-form-field class="mat-data-input-field" appearance="outline">
+          <mat-label>Liquidity</mat-label>
+          <input type="number" formControlName="Liquidity" matInput placeholder="Enter Liquidity">
+          <mat-error>This field should be a number</mat-error>
+        </mat-form-field> -->
+
+        <mat-form-field>
+          <mat-label>Liquidity sensor</mat-label>
+          <mat-select formControlName="Liquidity" name="Liquidity">
+              <mat-option *ngFor="let item of sensorCount" [value]="item.value">
+                  {{item.value}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+
+  
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status" name="status">
+              <mat-option *ngFor="let item of allStatus" [value]="item.value">
+                  {{item.viewValue}}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit">
+        {{ deviceData ? "Update" : "Add" }}
+      </button>
+      <a style="margin-left: 5px;" mat-raised-button color="accent" *ngIf="deviceData" (click)="resetEditForm()">Reset
+        Data</a>
+    <a style="margin-left: 5px;" mat-raised-button color="accent" *ngIf="!deviceData" (click)="resetAddForm()">Reset
+        Data</a>
+    </form>
+  </div>

@@ -1,0 +1,70 @@
+
+@import 'src/app/shared/theme/table_style.scss';
+h2,h1, p{
+
+    margin-bottom: 0px;
+}
+
+h1{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.top-title{
+   ::ng-deep .mat-checkbox-layout {
+        margin-bottom: 0px!important;
+        gap: 0px!important;
+    }
+    padding-bottom: 10px;
+    box-sizing: border-box;
+}
+
+::ng-deep .mat-checkbox-layout {
+    margin-bottom: 10px!important;
+    gap: 10px;
+}  
+
+
+::ng-deep .mat-checkbox-layout {
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+form{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    max-width: 700px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 20px auto;
+    gap: 10px;
+    button{
+        max-width: 150px;
+        margin: auto;
+    }
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 20px;
+    .role{
+        max-width: 200px;
+    }
+}
+
+.parent::ng-deep .mat-checkbox-inner-container {
+    height: 20px!important;
+    width: 20px!important;
+}
+
+
+
+
+::ng-deep  .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: #ff4081;
+}
+p{
+margin-right: 10px;
+font-size: 16px;
+}
+
+.chield{
+    margin-bottom: 15px;
+}

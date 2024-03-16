@@ -1,0 +1,154 @@
+<div class="container">
+  <div class="login-main">
+    <div class="login">
+      <div class="login-top">
+        <a routerLink="/list-user">Go back</a>
+        <h1>Add New User</h1>
+      </div>
+
+      <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="login-from-inputs">
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" formControlName="first_name" matInput placeholder="Enter your first name..." required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" formControlName="last_name" matInput placeholder="Enter your last name..." required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input type="number" formControlName="mobile" matInput placeholder="Enter your mobile number..." required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" formControlName="email" matInput placeholder="Enter your email..." required>
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input formControlName="password" type="password" matInput placeholder="Enter your password..." required>
+            <mat-icon matSuffix>lock</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Address</mat-label>
+            <input type="text" formControlName="address" matInput placeholder="Enter your address...">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>User Type</mat-label>
+            <mat-select formControlName="user_type" name="status">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let item of userTypesUpdated" [value]="item.value" required>
+                {{item.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <mat-form-field>
+            <mat-label>Select Role</mat-label>
+            <mat-select [(ngModel)]="selectedValue" formControlName="role_id" name="role_id"
+              [required]="isSuperAdminSelected()">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let item of allRoles" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <mat-form-field class="company_multi" *ngIf="isCompanyRequired() && !isCompanyManagerSelected()">
+            <mat-label>Company</mat-label>
+            <mat-select formControlName="company_id" name="status" [required]="isCompanyRequired()">
+              <input type="text" class="search-company" (keyup)="applyFilter($event)" placeholder="Search Company">
+              <mat-option *ngIf="!isCompanyManagerSelected()">--</mat-option>
+              <mat-option *ngFor="let item of allCompany" [value]="item.id">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <mat-form-field *ngIf="isCompanyManagerSelected()">
+            <mat-label>Company</mat-label>
+            <mat-select formControlName="company_id" multiple [required]="isCompanyRequired()">
+              <input type="text" class="search-company" (keyup)="applyFilter($event)" placeholder="Search Company">
+              <mat-option *ngFor="let item of allCompany" [value]="item.id">{{item.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+            formControlName="gender">
+            <mat-label>Gender : </mat-label>
+
+            <mat-radio-button class="example-radio-button" *ngFor="let item of allGender" [value]="item">
+              {{item}}
+            </mat-radio-button>
+          </mat-radio-group>
+          
+          <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" name="status">
+              <mat-option *ngFor="let item of allStatus" [value]="item.value" required>
+                {{item.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
+          <!-- <input type="file"  (change)="onFileSelected($event)" accept="image/*"/> -->
+
+          <div class="file-up">
+            <img id="blah" [src]="imgurl || 'assets/placeholder400x400.jpg'" alt="your image" />
+            <button type="button" mat-raised-button (click)="fileInput.click()">Upload Image</button>
+            <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+            <!-- <span class="file-name">{{selectedFile?.name}}</span> -->
+        
+          </div>
+
+        </div>
+
+        <div class="submit-area">
+          <button class="btn-login" mat-raised-button type="submit">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

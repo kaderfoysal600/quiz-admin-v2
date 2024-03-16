@@ -1,0 +1,41 @@
+
+<div class="title">
+  <h2>Edit Profile Info</h2>
+  <button mat-icon-button type="button" (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<form #formElement="ngForm" [formGroup]="dataForm" (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="form-main">
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>First name</mat-label>
+            <input type="text" formControlName="first_name" matInput placeholder="Enter First name...">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input type="text" formControlName="last_name" matInput placeholder="Enter Last name...">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="mat-data-input-field" appearance="outline">
+            <mat-label>Phone No</mat-label>
+            <input type="text" formControlName="mobile" matInput placeholder="Enter Phone No ...">
+            <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+        formControlName="gender">
+        <mat-label>Gender : </mat-label>
+
+        <mat-radio-button class="example-radio-button" *ngFor="let item of allGender" [value]="item">
+          {{item}}
+        </mat-radio-button>
+      </mat-radio-group>
+
+    </div>
+    <button mat-raised-button color="primary" type="submit" >
+      Update
+    </button>
+</form>

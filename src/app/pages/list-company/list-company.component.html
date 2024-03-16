@@ -1,0 +1,157 @@
+<div class="section-1">
+
+
+  <div class="container">
+    <div class="section-1-top">
+      <div class="add">
+        <button mat-raised-button color="primary" (click)="openEditControllerDialog()"> 
+          <mat-icon>add</mat-icon> Add New</button>
+      </div>
+      <div class="export">
+
+        <div class="export-container">
+          <button mat-raised-button color="primary" (click)="exportCSV()">CSV</button>
+        </div>
+      </div>
+      <h1>Data of All Compay</h1>
+    </div>
+    <div class="search">
+
+      <form action="" [formGroup]="searchForm" (ngSubmit)="onSearchClick(page)">
+        <mat-form-field>
+          <mat-label>Search by name</mat-label>
+          <input matInput placeholder="Ex. GrameeenPhone" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Search by Email</mat-label>
+          <input matInput placeholder="Ex. fysal@bdcom.com" formControlName="contactEmail">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Search by Phone Number</mat-label>
+          <input matInput placeholder="Ex. 01199200300" formControlName="contactNumber">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label> Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let data of allStatus" [value]="data.value">
+              {{data.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" type="submit" [disabled]="searchClicked"><mat-icon>search</mat-icon>
+          Search</button>
+
+        <div class="clear">
+          <button mat-raised-button color="primary" (click)="onClearFilter()">
+            <mat-icon>clear</mat-icon> Clear Filter</button>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="responsive-table">
+      <table id="ExampleTable" #table mat-table matTableExporter
+        [dataSource]="dataSource | paginate: { itemsPerPage: itemsPerPage, currentPage: page , totalItems:totalItems}"
+        matSort class="example-list">
+        
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let row">
+            <div class="edit-delete">
+              <button  class="delete-button"color="warn" (click)="addDevice(row)">
+                <!-- <img src="../../../assets/door-handle.png" alt=""> -->
+                <mat-icon>perm_device_information</mat-icon>
+              </button>
+  
+              <button *ngIf="this.checkEditDeletePermission()" class="edit-button" (click)="openEditControllerDialog(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button *ngIf="this.checkEditDeletePermission()" class="delete-button" color="warn"  (click)="openConfirmDialog(row)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="SlNo">
+          <th mat-header-cell *matHeaderCellDef>Sl No</th>
+          <td mat-cell *matCellDef="let i = index">{{ i + 1 }}</td>
+      </ng-container>
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="Contact Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact</th>
+          <td class="big-td" mat-cell *matCellDef="let element">
+            <div>
+              <p><span>Name </span>: {{ element?.contactName }}</p>
+              <p> <span>Number</span> : {{ element?.contactNumber }} </p>
+              <p> <span>Email</span> : {{ element?.contactEmail }}</p>
+              <p> <span>Address</span> : {{ element?.contactAddress }}</p>
+            </div>
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Max">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Max</th>
+          <td  mat-cell *matCellDef="let element">
+            <div>
+              <p> <span> User</span>: {{ element?.maxUser }}</p>
+              <p> <span>Role</span>: {{ element?.maxRole }} </p>
+              <p> <span>Device</span> :{{ element?.maxDevice }}</p>
+            </div>
+          </td>
+        </ng-container>
+
+
+
+
+        <ng-container matColumnDef="Remarks">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+          <td mat-cell *matCellDef="let element">{{ element?.remarks}}</td>
+        </ng-container>
+        <ng-container matColumnDef="Created">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Created</th>
+          <td  mat-cell *matCellDef="let element">
+            <div>
+              <p><span>By</span>: {{ element?.CreatedByUser.first_name }}  {{ element?.CreatedByUser.last_name}}</p>
+              <p><span>Time</span>: {{ element?.created_time | date : ' MMM d, y - h:mm:ss a' }}</p>
+            </div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Updated">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Updated</th>
+          <td  mat-cell *matCellDef="let element">
+            <div>
+              <p><span>By</span>: {{ element?.UpdatedByUser?.first_name }}  {{ element?.UpdatedByUser?.last_name}}</p>
+              <p><span>Time</span>: {{ element?.updated_time | date : ' MMM d, y - h:mm:ss a' }}</p>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let element">{{ element.status === 0 ? 'Inactive' : 'Active' }}</td>
+        </ng-container>
+
+
+        <div>
+          <div class="th-c">
+            <tr class="header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          </div>
+          <tr class="row" mat-row class="example-box" *matRowDef="let row; columns: displayedColumns"></tr>
+        </div>
+      </table>
+    </div>
+
+    <!-- //peginatio -->
+    <div class="data-pagination" *ngIf="showPegination">
+      <pagination-controls (pageChange)="getAllCompany((page = $event))"></pagination-controls>
+    </div>
+  </div>
+</div>
