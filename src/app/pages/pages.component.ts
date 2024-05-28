@@ -45,7 +45,6 @@ export class PagesComponent implements OnInit {
     // Retrieve the data from the shared service when the component initializes.
     this.loggedInUserRolePermission = this.userDataService.getLoggedInUserRolePermission();
     // If it's not already set, fetch it from your API.
-    this.getLogedInUserPermissionformApi();
     if (!this.loggedInUserRolePermission) {
       // this.getLogedInUserPermissionformApi();
     }
@@ -54,28 +53,7 @@ export class PagesComponent implements OnInit {
     this.sidebarClick = false;
   }
 
-  getLogedInUserPermissionformApi() {
-    // this.spinner.show();
-    this.subDataOne = this.authService.getAllRolePermission(this.LoggedInUserRoleId).subscribe({
-      next: (res) => {
-        if (res) {
-          this.loggedInUserRolePermission = res['data']
-          console.log('res1223', res['data'])
 
-          this.userDataService.setLoggedInUserRolePermission(this.loggedInUserRolePermission);
-          // this.spinner.hide();
-          this.updateloggedInUserRolePermission();
-
-        } else {
-          console.log('Error! Please try again.')
-        }
-      },
-      error: (err) => {
-        // this.spinner.hide();
-        console.log(err)
-      }
-    })
-  }
 
 
 

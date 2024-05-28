@@ -1,0 +1,24 @@
+.form-main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.dialog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.mat-radio-button{
+  margin-right: 10px;
+}
+
+
+@media(max-width: 768px){
+  .form-main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+  }
+}

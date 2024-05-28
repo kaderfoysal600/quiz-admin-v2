@@ -1,0 +1,51 @@
+<div class="section-1">
+  <div class="container">
+    <div class="section-1-top">
+      <div class="add">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openEditControllerDialog()"
+        >
+          Add New
+        </button>
+      </div>
+      <h1>Data of All Task</h1>
+    </div>
+    <div class="table-container">
+      <table id="ExampleTable">
+        <tr>
+          <th>Actions</th>
+          <th>Title </th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor="let data of allTask; let i = index">
+          <td class="td-action">
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="openEditControllerDialog(data)"
+              class="edit-button"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="openConfirmDialog(data)"
+              class="delete-button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+          <td>{{ data?.title }}</td>
+          <td>{{ data?.description }}</td>
+          <td>{{ data?.dueDate | date }}</td>
+          <td>{{ data?.status }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

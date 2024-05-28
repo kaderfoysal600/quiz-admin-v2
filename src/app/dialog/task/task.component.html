@@ -1,0 +1,69 @@
+<div class="dialog-container">
+  <div class="dialog-top">
+    <h2>{{ divisionData ? "Edit Task" : "Add Task" }}</h2>
+    <button mat-icon-button (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="dataForm" class="form-main" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" placeholder="Enter Title..." />
+      <mat-error *ngIf="dataForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        placeholder="Enter Description..."
+      ></textarea>
+      <mat-error *ngIf="dataForm.get('description')?.hasError('required')">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Due Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="dueDate"
+        placeholder="Choose a date"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dataForm.get('dueDate')?.hasError('required')">
+        Due Date is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-radio-group aria-label="Select status" formControlName="status">
+      <mat-radio-button value="completed">Completed</mat-radio-button>
+      <mat-radio-button value="not completed">Not Completed</mat-radio-button>
+    </mat-radio-group>
+
+    <button mat-raised-button color="primary" type="submit">
+      {{ divisionData ? "Update" : "Add" }}
+    </button>
+    <a
+      style="margin-left: 5px"
+      mat-raised-button
+      color="accent"
+      *ngIf="divisionData"
+      (click)="resetEditForm()"
+      >Reset Data</a
+    >
+    <a
+      style="margin-left: 5px"
+      mat-raised-button
+      color="accent"
+      *ngIf="!divisionData"
+      (click)="resetAddForm()"
+      >Reset Data</a
+    >
+  </form>
+</div>
